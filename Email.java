@@ -1,6 +1,6 @@
 import java.util.Scanner;
 import java.util.Random;
-import java.nio.charset.Charset;
+
 
 public class Email {
     private String firstName;
@@ -8,6 +8,8 @@ public class Email {
     private String department;
     private String companyName;
     private String password;
+    private int mailBoxCapacity;
+    private String alternateEmail;
 
     Email(){
         this.firstName="";
@@ -15,9 +17,11 @@ public class Email {
         this.department="";
         this.companyName="";
         this.password="";
+        this.mailBoxCapacity=0;
+        this.alternateEmail="";
     }
 
-    void GenerateEmail(){
+    void generateEmail(){
         Scanner scan = new Scanner(System.in);
         System.out.println("first name: ");
         firstName = scan.nextLine();
@@ -33,7 +37,7 @@ public class Email {
         
     }
 
-    void GeneratePassword(){
+    void generatePassword(){
         int leftLimit = 97; // letter 'a'
         int rightLimit = 122; // letter 'z'
         int targetStringLength = 10;
@@ -47,12 +51,39 @@ public class Email {
         password = buffer.toString();
     }
     
-    void PrintEmail(){
+    public void printEmail(){
         System.out.println(firstName + (lastName.isEmpty()? "": ".") + lastName + "@" + department 
         + (department.isEmpty()? "": ".") + companyName + ".com");
     }
-    void PrintPassword(){
+    public void printPassword(){
         System.out.println(password);
+    }
+
+    public String getPassword(){
+        return password;
+    }
+    public void setPassword(String pswd){
+        password = pswd;
+    }
+
+    public void setAlternateEmail(String e){
+        alternateEmail = e;
+    }
+
+    public void setMailBoxCapacity(int cap){
+        mailBoxCapacity=cap;
+    }
+
+    public String toString(){
+        return
+        "firstName: " + firstName + '\n' +
+        "lastName: "  + lastName  + '\n' +
+        "department: "+ department + '\n' +
+        "company: "   + companyName + '\n' +
+        "password: "  + password    + '\n' +
+        "mailBoxCapacity: " + Integer.toString(mailBoxCapacity) + '\n' +
+        "alternateEmail: " + alternateEmail;
+
     }
 
 }
